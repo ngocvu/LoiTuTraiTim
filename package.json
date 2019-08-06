@@ -1,0 +1,32 @@
+{
+  "name": "yumeko",
+  "version": "0.1.0",
+  "description": "A simple discord bot",
+  "main": "a.js",
+  "scripts": {
+    "start": "a.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discordbot"
+  ],
+  "author": "iCrawl",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "opusscript": "^0.0.6",
+    "simple-youtube-api": "^5.2.1",
+    "ytdl-core": "^0.29.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-aqua": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": "aqua",
+    "rules": {
+      "no-console": 0
+    }
+  }
+}
