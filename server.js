@@ -32,7 +32,7 @@ bot.on('message', message=>{
 		if (err) console.error(err);
 	})
 	
-	if (msg === 'bohmoney' || msg === 'boh money'){
+	if (msg.content === 'bohmoney' || msg.content === 'boh money'){
 		message.channel.send({embed:{
 			title: "**__NGÂN HÀNG__**",
 			color: "00BFFF",
