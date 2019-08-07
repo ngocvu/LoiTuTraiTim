@@ -14,7 +14,7 @@ bot.on('ready', () =>{
 
 bot.on("guildMemberAdd", (member,message) => {
   let memberid = member.user.id;
-  member.guild.channels.get('608132630298230842').send("Chào <@"+  memberid +"> , Chào b?n d?n v?i server L?i T? Trái Tim, b?n nên vào #rules-:warning:  d? d?c lu?t tru?c khi vui choi vào c?ng d?ng này ^^. Xong r?i vào #:two_hearts:-l?i-t?-trái-tim-:two_hearts:  d? trò chuy?n nhé.")
+  member.guild.channels.get('608132630298230842').send("Chào <@"+  memberid +"> , Chào mừng bạn đến với server Lời Từ Trái Tim, bạn nên vào nên vào #rules-:warning:  để đọc luật trước khi vui chơi vào cộng đồng này ^^. Xong rơi vào #:two_hearts:-lời-từ-trái-tim-:two_hearts:  để trò chuyện nhé.")
 }); 
 
 bot.on('message', message=>{
