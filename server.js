@@ -18,9 +18,7 @@ bot.on("guildMemberAdd", (member,message) => {
   member.guild.channels.get('602453889459027999').send("Chào <@"+  memberid +"> , Chào mừng bạn đến với server Lời Từ Trái Tim, bạn nên vào nên vào <#602452372412825620>-:warning:  để đọc luật trước khi vui chơi vào cộng đồng này ^^. Xong rơi vào <#603591426751725568>  để trò chuyện nhé.")
 }); 
 
-bot.on('message', message=>{
-	let sender = message.author;
-	let msg = message.content.toUpperCase();
+bot.on('message', msg=>{
 	
 	if (bot.user.id === message.author.id) { return }
 	
@@ -38,7 +36,7 @@ bot.on('message', message=>{
     		message.channel.send(`${message.author.tag} đang sở hữu ${output.balance} boh.`);
 	}
 	
-	  if (command === 'daily') {
+	  if (msg.content === 'bohdaily' || msg.content === 'boh daily') {
  
     		var output = await eco.Daily(message.author.id)
  
@@ -52,7 +50,7 @@ bot.on('message', message=>{
     		}
  
   		}
-	  if (command === 'leaderboard') {
+	  if (msg.content === 'bohlb' || msg.content === 'boh lb') {
  
     
     if (message.mentions.users.first()) {
