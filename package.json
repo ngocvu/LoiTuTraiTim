@@ -2,9 +2,9 @@
   "name": "yumeko",
   "version": "0.1.0",
   "description": "A simple discord bot",
-  "main": "a.js",
+  "main": "server.js",
   "scripts": {
-    "start": "a.js"
+    "start": "server.js"
   },
   "keywords": [
     "discord",
