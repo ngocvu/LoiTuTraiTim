@@ -31,6 +31,23 @@ bot.on('message', message=>{
 	fs.writeFile('userData.json',JSON.stringify(userData), (user) => {
 		if (err) console.error(err);
 	})
+	
+	if (msg === 'bohmoney' || msg === 'boh money'){
+		message.channel.send({embed:{
+			title: "**__NGÂN HÀNG__**",
+			color: "00BFFF",
+			fields:[{
+				name:"**Tài khoản**",
+				value: message.author.username,
+				inline: true
+			},
+			{
+				name: "Account Balance",
+				value: userData[sender.id + message.guild.id].money,
+				inline: true
+			}]
+		}})	
+	}
 })
 
 bot.on('ready', () => {
