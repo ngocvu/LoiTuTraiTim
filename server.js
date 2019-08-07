@@ -21,6 +21,8 @@ bot.on('message', message=>{
 	let sender = message.author;
 	let msg = message.content.toUpperCase();
 	
+	if (bot.user.id === message.author.id) { return }
+	
 	if (msg.content === 'boh ping' || msg.content === 'bohping') {
 		msg.channel.send('Pong! :ballot_box_with_check:')
 	}
@@ -33,20 +35,8 @@ bot.on('message', message=>{
 	})
 	
 	if (msg.content === 'bohmoney' || msg.content === 'boh money'){
-		message.channel.send({embed:{
-			title: "**__NGÂN HÀNG__**",
-			color: "00BFFF",
-			fields:[{
-				name:"**Tài khoản**",
-				value: message.author.username,
-				inline: true
-			},
-			{
-				name: "**Số tiền**",
-				value: userData[sender.id + message.guild.id].money,
-				inline: true
-			}]
-		}})	
+		let value= userData[sender.id + message.guild.id].money;
+		message.channel.send('Bạn đang giữ '+ value +' boh'); 
 	}
 })
 
