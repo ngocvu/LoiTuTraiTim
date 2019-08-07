@@ -42,7 +42,7 @@ bot.on('message', message=>{
 				inline: true
 			},
 			{
-				name: "Account Balance",
+				name: "**Số tiền**",
 				value: userData[sender.id + message.guild.id].money,
 				inline: true
 			}]
