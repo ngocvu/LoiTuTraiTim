@@ -7,7 +7,7 @@ const moment = require('moment');
 const modRole = 'Admin';
 
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
-const token = 'NjA4MzQyMjcxMzgwNjg0ODUx.XUqPmQ.is01svZDognuUshZlGIxoxagFBI';
+const token = 'NjA4MzQyMjcxMzgwNjg0ODUx.XUxJDg.wr0eECNzwfBx8Q8J4vYHKWUfrg0';
 
 bot.on('ready', () =>{
 	console.log('Bot online');
