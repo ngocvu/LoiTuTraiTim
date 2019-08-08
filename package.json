@@ -14,8 +14,12 @@
   "author": "iCrawl",
   "license": "MIT",
   "dependencies": {
+    "discord-economy": "^1.1.6",
     "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.24.0",
     "opusscript": "^0.0.6",
+    "sequelize": "^5.12.3",
     "simple-youtube-api": "^5.2.1",
     "ytdl-core": "^0.29.5"
   },
