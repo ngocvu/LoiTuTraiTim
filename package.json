@@ -1,36 +1,12 @@
 {
-  "name": "yumeko",
-  "version": "0.1.0",
-  "description": "A simple discord bot",
+  "name": "greeter-bot",
+  "version": "1.0.0",
+  "description": "My First Discord Bot",
   "main": "server.js",
-  "scripts": {
-    "start": "server.js"
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "discordbot"
-  ],
-  "author": "iCrawl",
-  "license": "MIT",
+  "author": "Your Name",
   "dependencies": {
-    "discord-economy": "^1.1.6",
     "discord.js": "^11.5.1",
     "fs": "0.0.1-security",
-    "moment": "^2.24.0",
-    "opusscript": "^0.0.6",
-    "sequelize": "^5.12.3",
-    "simple-youtube-api": "^5.2.1",
-    "ytdl-core": "^0.29.5"
-  },
-  "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-aqua": "^1.0.0"
-  },
-  "eslintConfig": {
-    "extends": "aqua",
-    "rules": {
-      "no-console": 0
-    }
+    "moment": "^2.24.0"
   }
 }
