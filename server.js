@@ -7,7 +7,7 @@ const moment = require('moment');
 const modRole = 'Admin';
 
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
-const token = 'NjA4MzQyMjcxMzgwNjg0ODUx.XUy_Qg.8qojrKheLltyD8dcWCJy6zqqaUQ';
+const token = 'NjA4MzQyMjcxMzgwNjg0ODUx.XU0Q6g.WzkdS6GUAwb1dxfMt2q6adCQKb4';
 
 bot.on('ready', () =>{
 	console.log('Bot online');
@@ -95,6 +95,38 @@ bot.on('message', message=>{
 				name: "BOHSEND / BOHGIVE + <số tiền> + <người dùng>.",
 				value: "Dùng để gửi tiền của bản thân cho người dùng."
 			  },
+			  {
+				name : "BOHPLAY + <tên nhạc>.",
+				value : "Chơi nhạc theo tên bài hát"
+				},
+			{
+				name: "BOHNP",
+				value: "Xem đang chơi bài gì"
+			},
+			{
+				name : "BOHSKIP",
+				value: "Bỏ qua bài nhạc hiện tại"
+			},
+			{
+				name: "BOHSTOP",
+				value: "Dừng nhạc"
+			},
+			{
+				name :"BOHTIEPTUC",
+				value: "Tiếp tục chơi nhạc khi đã dừng"
+			},
+			{
+				name: "BOHLIST",
+				value: "Xem danh sách nhạc"
+			},
+			{
+				name: "BOHAMLUONG + <âm lượng>",
+				value: "Đặt lại âm lượng"
+			},
+			{
+				name : "BOHTHOAT",
+				value: "Bot thoát khỏi voice"
+			}
 			],
 			timestamp: new Date(),
 			footer: {
@@ -108,6 +140,7 @@ bot.on('message', message=>{
 	if (userData[sender.id + message.guild.id].CreateBank === 1){
 	if (msg.startsWith(`${prefix}TAIXIU`) || msg.startsWith(`${prefix}TX`)){
 		userData[sender.id + message.guild.id].CreateBank = 1;
+		if (isInteger(Number(args[0]))===false) {return message.reply("Hãy dùng lệnh BOHHELP để biết thêm thông tin chi tiết!");}
 		if ((Number(args[0])>userData[sender.id + message.guild.id].money) && (userData[sender.id + message.guild.id].money<=0)){message.reply("Bạn không đủ tiền để đặt cược")}
 		else {
 		var cuoc;
@@ -118,7 +151,11 @@ bot.on('message', message=>{
 		var chon;
 
 		if (!args[1]) {chon='XIU';message.reply("Bạn không chọn tài hay xỉu nên máy tự mặc định bạn chọn xỉu")}
-		else {chon=args[1].toUpperCase()};
+		else {
+				if (args[1].toUpperCase()==='T' || args[1].toUpperCase()==='TAI') {chon = 'TAI';}
+				else if (args[1].toUpperCase()==='X' || args[1].toUpperCase()==='XIU') {chon = 'XIU';}
+				else {return message.reply("Cú pháp sai. Hãy dùng BOHHELP để biết thêm thông tin");}
+			};
 
 		var tx1 = Math.floor(Math.random() * 6 )+1;
 		var tx2 = Math.floor(Math.random() * 6 )+1;
@@ -133,7 +170,10 @@ bot.on('message', message=>{
 		}
 		else {
 			if (s<=9 && chon === 'XIU' || s>=10 && chon === 'TAI'){
-				message.reply("Bạn thật may mắn.Bạn đã chọn đúng "+chon+". Do đó bạn nhận được "+cuoc+" BoH :money_mouth: ")
+				var a;
+				if (chon === 'XIU') {a= 'XỈU'}
+				else {a= 'TÀI'}
+				message.reply("Bạn thật may mắn.Bạn đã chọn đúng "+a+". Do đó bạn nhận được "+cuoc+" BoH :money_mouth: ")
 				userData[sender.id + message.guild.id].money += cuoc;
 			}
 			else {
@@ -158,7 +198,7 @@ bot.on('message', message=>{
 		else {
 			userData[sender.id + message.guild.id].lastDaily = moment().format('L')
 			userData[sender.id + message.guild.id].LanLX = 0;
-			message.channel.send("**"+radmin[random1]+"** đang định cho bạn <@" +sender.id+"> "+ k +" BoH nhưng bị **"+radmin[random2]+"** cướp đi :rage: . Bạn không nhận được tiền. Hãy quay lại sau "+moment().endOf('day').fromNow()+" nhé!");
+			message.channel.send("**"+radmin[random1]+"** đang định cho bạn <@" +sender.id+"> "+ k +" BoH nhưng bị **KẺ CẮP TRÁI TIM** cướp đi :rage: . Bạn không nhận được tiền. Hãy quay lại sau "+moment().endOf('day').fromNow()+" nhé!");
 		}
 	}
 	if (msg === `${prefix}M` || msg === `${prefix}MONEY`){
@@ -168,6 +208,7 @@ bot.on('message', message=>{
 
 	if (msg.startsWith(`${prefix}HF`) || msg.startsWith(`${prefix}HEARTFLIP`)) {
 		userData[sender.id + message.guild.id].CreateBank = 1;
+		if (isInteger(Number(args[0]))===false) {return message.reply("Hãy dùng lệnh BOHHELP để biết thêm thông tin chi tiết!");}
 		if (args[0]>userData[sender.id + message.guild.id].money){ message.channel.send("Bạn không đủ tiền để đặt cược :scream: !")}
 		else {
 			var cuoc;
@@ -192,6 +233,7 @@ bot.on('message', message=>{
 			message.reply("**Bạn cần role "+modRole+" để có thể dùng lệnh này")
 		}
 		else {
+			if (isInteger(Number(args[0]))===false) {return message.reply("Hãy dùng lệnh BOHSETCOIN <số tiền> <người dùng>");}
 			var num = Number(args[0]);
 			let userid ='';
 			var firstmention =  message.mentions.members.first();
@@ -215,11 +257,12 @@ bot.on('message', message=>{
 	}
 
 	if (msg.startsWith(`${prefix}GIVE`) || msg.startsWith(`${prefix}SEND`)){
+			if (isInteger(Number(args[0]))===false) {return message.reply("Hãy dùng lệnh BOHHELP để biết thêm thông tin chi tiết!");}
 			var num = Number(args[0]);
 			let userid ='';
 			var firstmention =  message.mentions.members.first();
 			if (!firstmention){
-				message.channel.send("Nhập sai cú pháp. Vui lòng dùng BOHHELP !")
+				message.reply("Nhập sai cú pháp. Vui lòng dùng BOHHELP !")
 			}
 			else if (num>userData[sender.id + message.guild.id].money){
 					message.reply("Bạn không có đủ tiền để gửi đâu! Đồ ngốc ~")
@@ -242,6 +285,7 @@ bot.on('message', message=>{
 	if (msg.startsWith(`${prefix}BC`) || msg.startsWith(`${prefix}BAUCUA`))
 	{
 		userData[sender.id + message.guild.id].CreateBank = 1;
+		if (isInteger(Number(args[0]))===false) {return message.reply("Hãy dùng lệnh BOHHELP để biết thêm thông tin chi tiết!");}
 		if (Number(args[0])>userData[sender.id + message.guild.id].money){ message.channel.send("Bạn không đủ tiền để đặt cược :scream: !")} 
 		else 
 		{
@@ -253,7 +297,9 @@ bot.on('message', message=>{
 			var chon;
 
 			if (!args[1]) {chon='BAU';message.reply("Bạn không chọn cược con gì nên máy tự mặc định bạn chọn bầu")}
-			else {chon=args[1].toUpperCase()};
+			else {
+				if (args[1].toUpperCase() != 'BAU' && args[1].toUpperCase() != 'TOM' && args[1].toUpperCase() != 'CUA' && args[1].toUpperCase() != 'CA' && args[1].toUpperCase() != 'GA' && args[1].toUpperCase() != 'NAI'){return message.reply("Hãy dùng lệnh BOHHELP để biết thêm thông tin chi tiết!");}
+			};
 
 			var baucua = ["BẦU", "CUA", "TÔM", "CÁ", "GÀ", "NAI"];
 			var bctest = ["BAU", "CUA", "TOM", "CA", "GA", "NAI"];
@@ -292,5 +338,8 @@ bot.on('message', message=>{
 	}
 })
 
+function isInteger(x) {
+    return x % 1 === 0;
+}
 
 bot.login(token);
